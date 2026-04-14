@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <div style="margin: 12px 5px;">
+            <label for="n1">Nombre 1</label>
+            <input type="number" id="n1">
+        </div>
+        <div style="margin: 12px 5px;">
+            <label for="n2">Nombre 2</label>
+            <input type="number" id="n2">
+        </div>
+        <div style="margin: 12px 5px;">
+            <input type="radio" name="op" value="add" checked id="add">
+            <label for="add">Addition</label>
+        </div>
+        <div style="margin: 12px 5px;">
+            <input type="radio" name="op" value="sub" id="sub">
+            <label for="sub">Soustraction</label>
+        </div>
+        <div style="margin: 12px 5px;">
+            <input type="radio" name="op" value="mul" id="mul">
+            <label for="mul">Multiplication</label>
+        </div>
+        <div style="margin: 12px 5px;">
+            <input type="radio" name="op" value="div" id="div">
+            <label for="div">Division</label>
+        </div>
+        <div style="margin: 12px 5px;">
+            <button type="button" id="c">Calculer</button>
+        </div>
+    </form>
+    <p id="res"></p>
+    <script type="text/javascript">
+        document.querySelector("#c").addEventListener('click',function(){
+            let n1=parseFloat(document.querySelector('#n1').value);
+            let n2=parseFloat(document.querySelector('#n2').value);
+            let op=document.querySelectorAll('input[name=op]');
+            let operation;
+            op.forEach(function(elt,pos){
+                if(elt.checked){
+                    operation=elt.value;
+                }
+            });
+            let res;
+            switch(operation){
+                case 'add':
+                    res=n1+n2;
+                    break;
+                case 'sub':
+                    res=n1-n2;
+                    break;
+                case 'mul':
+                    res=n1*n2;
+                    break;
+                case 'div':
+                    res=n1/n2;
+                    break;    
+            }
+            let p=document.querySelector('#res');
+            p.innerHTML=`Résultat : ${res}`;    
+        });
+    </script>
+</body>
+</html>

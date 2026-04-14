@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script type="text/javascript">
+      let numbers=[1,5,6,3,2,10,12];
+      /*let v=-1;
+      for(let pos in numbers){
+        if(numbers[pos]>=5){
+
+            v=pos;
+            break;
+        }
+      }
+    v!=-1? console.log(`la premiére est : ${v}`):console.log('aucune valeur est superieure à cinq');
+    */  
+   /*function fct(x){
+    return x>=5;
+   }
+   let v=numbers.find(fct);
+   console.log(v);*/ 
+
+   //let v=numbers.find(function(x){return x>=5;})
+      let v=numbers.find((x)=>x>=5);
+
+
+
+    </script>
+    
+</body>
+</html>

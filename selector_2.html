@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <div style="margin: 12px 5px;">
+            <label for="n1">Note 1</label>
+            <input type="number" step="0.01" min="0" max="20" id="n1">
+        </div>
+        <div style="margin: 12px 5px;">
+            <label for="n2">Note 2</label>
+            <input type="number" step="0.01" min="0" max="20" id="n2">
+        </div>
+        <div style="margin: 12px 5px;">
+            <label for="n3">Note 3</label>
+            <input type="number" step="0.01" min="0" max="20" id="n3">
+        </div>
+        <div style="margin: 12px 5px;">
+            <button type="button" id="c">Calculer</button>
+        </div>
+    </form>
+    <p id="res"></p>
+    <script type="text/javascript">
+        document.querySelector("#c").addEventListener('click',function(){
+            let n1=parseFloat(document.querySelector('#n1').value);
+            let n2=parseFloat(document.querySelector('#n2').value);
+            let n3=parseFloat(document.querySelector('#n3').value);
+            let res=(n1+n2+n3)/3;
+            let p=document.querySelector('#res');
+            p.innerHTML=`Moyenne : ${res}`;
+            if(res>=10){
+                p.style.color='green';
+            }else{
+                p.style.color='red';
+            }
+        });
+    </script>
+</body>
+</html>

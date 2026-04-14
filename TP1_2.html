@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> 
+</head>
+<body>
+    <form action="">
+        <div style="margin: 12px 5px;">
+            <label for="pi">Prix initial</label>
+            <input type="number" step="0.01" min="10" max="10000" id="pi">
+        </div>
+        <div style="margin:12px 5px;">
+            <input type="radio" id="normal" name="type" checked>
+            <label for="normal">Client normal</label>
+            <input type="radio" id="fidele" name="type">
+            <label for="fidele">Client fidèle</label>
+            <input type="radio" id="vip" name="type">
+            <label for="vip">VIP</label>
+        </div>
+        <div style="margin: 12px 5px;">
+            <button type="button" id="c">Calculer</button>
+        </div>
+    </form>
+    <div id="res"></div>
+    <script type="text/javascript">
+        document.querySelector("#c").addEventListener('click',function(){
+            let pi=parseFloat(document.querySelector('#pi').value);
+            let isNormal=document.querySelector('#normal').checked;
+            let isFidele=document.querySelector('#fidele').checked;
+            let res=0;
+            if(isNormal){
+                res=pi-(pi*0.05);
+            }else if(isFidele){
+                res=pi-(pi*0.1);
+            }else{
+                res=pi-(pi*0.2);
+            }
+            document.querySelector('#res').innerHTML=`Prix final : ${res} DH`;
+        });
+    </script>
+</body>
+</html>

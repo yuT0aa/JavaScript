@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Calcul IMC</h3>
+
+<input type="number" id="poids" placeholder="Poids (kg)">
+<input type="number" id="taille" placeholder="Taille (m)" step="0.01">
+
+<button onclick="calculIMC()">Calculer</button>
+
+<p id="resultat3"></p>
+
+<script>
+function calculIMC() {
+  let poids = Number(document.getElementById("poids").value);
+  let taille = Number(document.getElementById("taille").value);
+
+  let imc = poids / (taille * taille);
+
+  document.getElementById("resultat3").textContent =
+    "IMC : " + imc.toFixed(2);
+}
+</script>
+
+</body>
+</html>

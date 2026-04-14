@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Rendez-vous médical</title>
+
+<style>
+body {
+    font-family: Arial;
+    margin: 20px;
+}
+
+h2, h3 {
+    text-align: center;
+}
+
+form {
+    text-align: center;
+}
+
+form input, form select, form button {
+    margin: 5px;
+    padding: 8px;
+    width: 200px;
+}
+
+table {
+    width: 100%;
+    margin-top: 15px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid black;
+}
+
+button {
+    cursor: pointer;
+}
+
+#recherche {
+    display: block;
+    margin: 10px auto;
+    padding: 8px;
+    width: 220px;
+}
+</style>
+
+</head>
+<body>
+
+<h2>Prise de rendez-vous médical</h2>
+
+<form id="formRDV">
+    <input type="text" id="nom" placeholder="Nom complet">
+    <input type="text" id="telephone" placeholder="Numéro de téléphone">
+
+    <select id="specialite">
+        <option value="">Choisir une spécialité</option>
+    </select>
+
+    <input type="date" id="date">
+    <button type="submit">Ajouter</button>
+</form>
+
+<input type="text" id="recherche" placeholder="Rechercher par spécialité">
+
+<h3>Liste des rendez-vous</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Téléphone</th>
+            <th>Spécialité</th>
+            <th>Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+</table>
+
+<script>
+// 🔹 Liste des spécialités
+const specialites = [
+    {id: 1, nom: "Médecin généraliste"},
+    {id: 2, nom: "Dentiste"},
+    {id: 3, nom: "Cardiologue"},
+    {id: 4, nom: "Dermatologue"},
+    {id: 5, nom: "Ophtalmologue"}
+];
+
+// 🔹 Remplissage dynamique du select
+const select = document.getElementById("specialite");
+
+specialites.forEach(sp => {
+    let option = document.createElement("option");
+    option.value = sp.nom;
+    option.textContent = sp.nom;
+    select.appendChild(option);
+});
+
+// 🔹 Classe RendezVous
+class RendezVous {
+    constructor(nom, telephone, date, specialite) {
+        this.nom = nom;
+        this.telephone = telephone;
+        this.date = date;
+        this.specialite = specialite;
+    }
+
+    estValide() {
+        if (!this.nom || !this.telephone || !this.date || !this.specialite) {
+            alert("Tous les champs sont obligatoires !");
+            return false;
+        }
+
+        if (this.telephone.length < 8) {
+            alert("Numéro invalide !");
+            return false;
+        }
+
+        if (new Date(this.date) < new Date().setHours(0,0,0,0)) {
+            alert("Date invalide !");
+            return false;
+        }
+
+        return true;
+    }
+
+    afficherHTML() {
+        return `
+        <tr>
+            <td>${this.nom}</td>
+            <td>${this.telephone}</td>
+            <td>${this.specialite}</td>
+            <td>${this.date}</td>
+            <td><button onclick="supprimer(this)">Supprimer</button></td>
+        </tr>
+        `;
+    }
+}
+
+// 🔹 Gestion formulaire
+const form = document.getElementById("formRDV");
+const tableBody = document.getElementById("tableBody");
+
+let listeRDV = [];
+
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let nom = document.getElementById("nom").value;
+    let telephone = document.getElementById("telephone").value;
+    let date = document.getElementById("date").value;
+    let specialite = document.getElementById("specialite").value;
+
+    let rdv = new RendezVous(nom, telephone, date, specialite);
+
+    if (rdv.estValide()) {
+        listeRDV.push(rdv);
+        afficherTable();
+        form.reset();
+    }
+});
+
+// 🔹 Affichage tableau
+function afficherTable() {
+    tableBody.innerHTML = "";
+
+    listeRDV.forEach(rdv => {
+        tableBody.innerHTML += rdv.afficherHTML();
+    });
+}
+
+// 🔹 Suppression
+function supprimer(btn) {
+    let row = btn.parentElement.parentElement;
+    let index = row.rowIndex - 1;
+
+    listeRDV.splice(index, 1);
+    afficherTable();
+}
+
+// 🔹 Recherche dynamique
+document.getElementById("recherche").addEventListener("keyup", function() {
+    let valeur = this.value.toLowerCase();
+
+    let filtre = listeRDV.filter(rdv =>
+        rdv.specialite.toLowerCase().includes(valeur)
+    );
+
+    tableBody.innerHTML = "";
+
+    filtre.forEach(rdv => {
+        tableBody.innerHTML += rdv.afficherHTML();
+    });
+});
+</script>
+
+</body>
+</html>

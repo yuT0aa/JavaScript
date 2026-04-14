@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+   <script type="text/javascript">
+              var editMode=false;
+               var editPos=-1;
+       document.addEventListener('DOMContentLoaded',function(e){
+              var nom=document.getElementById('nom');
+            var prix=document.formProduct.prix;
+        
+       
+                document.querySelector('#btnAdd').onclick=function(e){
+                 if(editMode===false){
+                    console.log('edit mode a false');
+                 //console.log(`nom : ${nom} - prix : ${prix}`);
+                let newRow=document.createElement('tr');
+                newRow.innerHTML=`<td>${nom.value}</td><td>${prix.value}</td>
+                <td><button type="button" class="btn btn-sm btn-danger" onclick="delProd(event)">Del</button>
+                   <button type="button" class="btn btn-sm btn-info" onclick="EditProd(event)">Edit</button> 
+                </td>`;
+                document.querySelector('#tbl_products tbody').appendChild(newRow);
+                nom.value="";
+                prix.value="";
+
+                 }else{
+                      
+            let listTr=Array.from(document.querySelector('#tbl_products tbody').children);
+            console.log(listTr);
+            listTr[editPos].children[0].textContent=nom.value;
+            listTr[editPos].children[1].textContent=prix.value;
+             document.getElementById('btnAdd').textContent="Ajouter";
+
+             editMode=false;
+             editPos=-1;
+
+            }
+
+          }
+
+
+
+
+
+       });
+
+
+       const delProd=(event)=>{
+       //event.target //cibler le bouton cliqué
+       if(confirm('voulez vous vraiement supprimer ?')==true){
+             event.target.parentElement.parentElement.remove();
+       }
+
+       }
+
+       /*function delProd(event){
+
+       }*/
+
+       const EditProd=(event)=>{
+        let listTr=Array.from(document.querySelector('#tbl_products tbody').children);
+        let TrToEdit=event.target.parentElement.parentElement;
+        editPos=listTr.indexOf(TrToEdit);
+        console.log(`editPos = ${editPos}`);
+        let childs=TrToEdit.children;
+        nom.value=childs[0].textContent;
+        prix.value=parseFloat(childs[1].textContent);
+        document.getElementById('btnAdd').textContent="Modifier";
+        editMode=true;
+        console.log(`editMode=${editMode}`);
+        }
+
+
+
+   </script>
+
+
+
+
+</head>
+<body>
+    <div class="container p-3 my-4">
+     <h2>Gestion de produits</h2>
+     <form action="" name="formProduct">
+        <div class="row">
+
+       <div class="col"><input type="text" class="form-control" name="nom" id="nom"></div>
+       <div class="col"><input type="number" class="form-control" name="prix" id="prix"></div>
+       <div class="col"><button type="button" class="btn btn-sm btn-success" id="btnAdd">Ajouter</button></div>
+       
+       
+        </div>
+        </form>
+        <table class="table table-striped" id="tbl_products">
+            <thead>
+                <tr><th>Nom</th><th>Prix</th><th>Actions</th></tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+     
+
+
+
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

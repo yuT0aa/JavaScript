@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+      let T=[1,-1,3,5,-7,9];
+      const fct=(x)=>x>=0;
+      function fct(x){
+
+        return x>=0;
+      }
+
+      //let output=T.filter(fct);
+      //let output=T.filter((x)=>x>=0);
+
+
+      //calculer la somme des elements du tableau T
+      //T.reduce(function(total,x){return total+x},0);
+      let res=T.reduce((total,x)=>total+=x,0);
+      console.log(res);
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+
+    <script type="text/javascript">
+        /*
+           1. afficher la liste des employés
+           2. Récuperer les distincts departements
+           3. Calculer la moyenne des salaires par dept
+   
+        */
+       let emps=[];
+       let depts=['IT','Achat','Comptabilité','RH'];
+       for(let i=0;i<20;i++){
+          /*emp['id']=i+1;
+          emp['nom']=`emp${i+1}`;
+          emp['departement']=depts[Math.floor(Math.random()*depts.length)];
+          emp['salaire']=(Math.random()*20000+10000).toFixed(2);
+          emps.push(emp);
+           */
+         emps.push({id:i+1,nom:`emp${i+1}`,departement:depts[Math.floor(Math.random()*depts.length)],salaire:(Math.random()*20000+10000).toFixed(2)});
+           }
+
+        //Afficher la liste des employés 
+        console.table(emps);
+        /*console.log(`id  -  nom  -  departement  -   salaire`);
+        emps.forEach(function(x,pos){
+             console.log(`${x.id}  -  ${x['nom']}  -  ${x['departement']}  -   ${x.salaire}`);
+        })*/
+ 
+        //Question2 
+
+        /*let q2=new Array();
+        emps.forEach((emp,i)=>{
+            q2.push(emp.departement);
+        });
+        q2=[...new Set(q2)];//...spread operator
+        console.log(q2);*/ 
+        let q2=[...new Set(emps.map(function(x){return x.departement;}))];
+        //console.log(q2);
+       let q3={}
+      depts.forEach(function(d){
+        q3[d]=[];
+        for(let e of emps){
+            if(e.departement==d){
+                q3[d].push(e.salaire);
+            }
+        }
+
+
+      });
+      console.table(q3);
+      for(let key in q3){
+         q3[key]=(q3[key].reduce(function(total,s){return total+parseFloat(s)},0)/q3[key].length).toFixed(2);
+      }
+     console.log(q3);
+    </script>
+ 
+
+
+
+
+
+
+</body>
+</html>

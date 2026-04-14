@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script type="text/javascript">
+        document.querySelector("#btnCal").addEventListener("click",function(){
+            let number1=parseFloat(document.querySelector("#number1").value);
+            let number2=parseFloat(document.querySelector("#number2").value);
+            let resultat=number1+number2;
+            document.querySelector("#resultat").innerHTML=`${number1} + ${number2} = ${resultat}`;
+        });
+    </script>
+    <style>
+        header{
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>Addition</header>
+    <div class="container mt-3 p-3">
+        <form action="" class="w-50 mx-auto">
+        <div class="mb-3">
+            <input type="number" id="number1" class="form-control">
+        </div>
+        <div class="mb-3"> 
+            <input type="number" id="number2" class="form-control">
+        </div>
+        <div class="mb-3">
+            <button id="btnCal" type="button" class="btn  btn-outline-primary">Calculer</button>
+        <div id="resultat"></div>
+
+        </div>
+        </form>
+    </div>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script type="text/javascript">
+        document.querySelector("#btnCal").addEventListener("click",function(){
+            let number1=parseFloat(document.querySelector("#number1").value);
+            let number2=parseFloat(document.querySelector("#number2").value);
+            let resultat=number1+number2;
+            document.querySelector("#resultat").innerHTML=`${number1} + ${number2} = ${resultat}`;
+        });
+</script>
+</body>
+</html>

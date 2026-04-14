@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Calcul TVA</h3>
+
+<input type="number" id="prixHT" placeholder="Prix HT">
+
+<button onclick="calculTVA()">Calculer</button>
+
+<p id="resultat2"></p>
+
+<script>
+function calculTVA() {
+  let prix = Number(document.getElementById("prixHT").value);
+
+  let ttc = prix * 1.20;
+
+  document.getElementById("resultat2").textContent =
+    "Prix TTC : " + ttc.toFixed(2) + " €";
+}
+</script>
+
+    
+</body>
+</html>

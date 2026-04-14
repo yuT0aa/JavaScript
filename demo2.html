@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+         //let poids=65,taille=170;
+         let poids,taille,imc;
+         poids=parseFloat(prompt("saisir votre poids: "));
+         taille=parseFloat(prompt("saisir votre taille : "));
+         //convertir les retours de prompt en numérique
+         //parseInt pout int et parseFloat pour float
+         console.log(`le type de la var poids est : ${typeof(poids)}`);
+         console.log(`le type de la var taille est : ${typeof(taille)}`);
+         imc=poids/taille**2;
+         console.log(`votre imc est ${imc.toFixed(2)}`);
+        document.write(`<h2>votre imc est ${imc.toFixed(2)}</h2>`);
+    </script>
+</head>
+<body>
+   
+    
+
+
+
+</body>
+</html>

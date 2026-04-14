@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <form action="">
+        <div>Heures : <span id="h"></span></div>
+        <div>Minutes : <span id="m"></span></div>
+        <div>Secondes : <span id="s"></span></div>
+         
+        <div><button type="button" id="i">Incrementer</button>
+        <button type="button" id="d">Decrementer</button>
+        <button type="button" id="a">Arrêter</button>
+        
+        </div>
+    </form>
+    <script type="text/javascript">
+        let time={s:0,m:0,h:0};
+        var retour=null;
+        const displayTime=()=>{
+
+            document.querySelector('#s').textContent=time.s;
+            document.querySelector('#m').textContent=time.m;
+            document.querySelector('#h').textContent=time.h;
+        }
+        displayTime();
+      function increment(){
+       // if(retour2!=null)clearInterval(retour2);
+        time.s+=1;
+        if(time.s==60){
+
+            time.s=0;
+            time.m+=1;
+            if(time.m==60){
+                time.m=0;
+                time.h+=1;
+            }
+
+        }
+           displayTime();
+    }
+        //fonction decrementer
+        function decrement(){
+            if(time.s==0 && time.m==0 && time.h==0){
+            if(retour) clearInterval(retour);
+            }
+            else{
+                time.s-=1;
+
+        if(time.s==0){
+            if(time.m>0){
+            time.s=60;
+            time.m-=1;
+               if(time.m==0){
+                   if(time.h>0){
+                        time.m=60;
+                        time.h-=1;
+                        if(time.h==0){
+                            if(retour) clearInterval(retour);
+                            }}}
+            }
+        }
+        }
+        displayTime();
+
+      }
+     document.querySelector('#i').onclick=function(e){
+        if(retour) clearInterval(retour);
+        retour=setInterval(increment,1000);
+     }
+ document.querySelector('#d').onclick=function(e){
+          if(retour) clearInterval(retour);
+          retour=setInterval(decrement,1000);
+     }
+ document.querySelector('#a').onclick=function(e){
+          if(retour) clearInterval(retour);
+          
+         
+     }
+    </script>
+</body>
+</html>

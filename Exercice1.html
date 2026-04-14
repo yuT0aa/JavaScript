@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <label for="naissance">Date de naissance:</label>
+        <input type="date" id="naissance">
+        <button type="button" id="c">Calculer l'age</button>
+    </form>
+    <p id="res"></p>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        document.querySelector("#c").addEventListener('click',function(){
+            let naissance=document.querySelector('#naissance').value;
+            let dateNaissance=new Date(naissance);
+            let dateActuelle=new Date();
+            let age=dateActuelle.getFullYear()-dateNaissance.getFullYear();
+            let m=dateActuelle.getMonth()-dateNaissance.getMonth();
+            if(m<0 || (m===0 && dateActuelle.getDate()<dateNaissance.getDate())){
+                age--;
+            }
+            let p=document.querySelector('#res');
+            p.innerHTML=`Votre age est : ${age} ans`;
+        });
+    </script>
+</body>
+</html>

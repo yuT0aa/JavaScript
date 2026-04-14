@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+<script type="text/javascript">
+    let ch="bonjour le monde";
+    let len=ch.length;
+    let firstChar=ch.charAt(0);//ch[0] invalid
+    let tranche1=ch.substring(1,5);//onjo
+    let tr2=ch.substr(1,2);//on
+    let tr3=ch.slice(0,6);
+   let ascii= ch.charCodeAt(0);
+   let c=String.fromCharCode(66);
+   //convertir string en tableau
+   //let myTable=Array.from(ch);
+   let myTable=[...ch];
+   console.log(myTable);
+   let T=[12,13,100,101,15];
+   T=T.map(x=>`${x}`)
+   console.log(T);
+
+   let Tstr=T.join('|');
+   console.log(Tstr);
+
+
+
+
+
+
+</script>
+</body>
+</html>

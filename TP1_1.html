@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> 
+</head>
+<body>
+    <form action="">
+        <div style="margin: 12px 5px;">
+            <label for="sb">Salaire Brut</label>
+            <input type="number" step="0.01" min="1000" max="10000" id="sb">
+        </div>
+        <div style="margin:12px 5px;">
+            <input type="radio" id="employe" name="type">
+            <label for="employe">Employé</label>
+            <input type="radio" id="cadre" name="type" checked>
+            <label for="cadre">Cadre</label>
+        </div>
+        <div style="margin: 12px 5px;">
+            <button type="button" id="c">Calculer</button>
+        </div>
+    </form>
+    <div id="res"></div>
+    <script type="text/javascript">
+        document.querySelector("#c").addEventListener('click',function(){
+            let sb=parseFloat(document.querySelector('#sb').value);
+            let type=document.querySelector('#employe').checked;
+            let res=0;
+            if(type){
+                res=sb-(sb*0.2);
+            }else{
+                res=sb-(sb*0.3);
+            }
+            document.querySelector('#res').innerHTML="Salaire net : "+res+" DH";
+        });
+    </script>
+</body>
+</html>

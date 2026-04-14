@@ -1,0 +1,27 @@
+Inférieur à 16,5
+
+Insuffisance pondérale sévère
+
+16,5 à 18,4
+
+Insuffisance pondérale modérée
+
+18,5 à 24,9
+
+Corpulence normale
+
+25 à 29,9
+
+Surpoids
+
+30 à 34,9
+
+Obésité modérée
+
+35 à 39,9
+
+Obésité sévère
+
+40 ou plus
+
+Obésité morbide

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Calcul Salaire</h3>
+
+<input type="number" id="salaireBase" placeholder="Salaire de base">
+<input type="number" id="heuresSup" placeholder="Heures supplémentaires">
+
+<button onclick="calculSalaire()">Calculer</button>
+
+<p id="resultat4"></p>
+
+<script>
+function calculSalaire() {
+  let base = Number(document.getElementById("salaireBase").value);
+  let heures = Number(document.getElementById("heuresSup").value);
+
+  let total = base + (heures * 10);
+
+  document.getElementById("resultat4").textContent =
+    "Salaire total : " + total + " €";
+}
+</script>
+
+</body>
+</html>

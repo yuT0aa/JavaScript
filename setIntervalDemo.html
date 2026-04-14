@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>Counter : <span id="c"></span></div>
+     <button type="button" onclick="start()">start</button>
+     <button type="button" onclick="stop()">stop</button>
+
+    <script type="text/javascript">
+        var cmpt=0;
+
+      function display(){
+
+        document.querySelector('#c').textContent=cmpt;
+      }
+
+      display();
+       function increment(){
+              cmpt+=1;
+              display();
+        
+       }
+
+      function start(){
+         res=setInterval(function(){increment();},1000);
+      }
+     function stop(){
+        if(res) clearInterval(res);
+     }
+
+
+    </script>
+</body>
+</html>

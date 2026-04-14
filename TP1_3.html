@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> 
+</head>
+<body>
+    <form action="">
+        <div style="margin: 12px 5px;">
+            <label for="kwh">Nombre de kWh</label>
+            <input type="number" step="0.01" min="1" max="1000" id="kwh">
+        </div>
+        <div style="margin:12px 5px;">
+            <input type="radio" id="normal" name="type" checked>
+            <label for="normal">Tarif normal</label>
+            <input type="radio" id="nuit" name="type">
+            <label for="nuit">Tarif nuit</label>
+        </div>
+        <div style="margin: 12px 5px;">
+            <button type="button" id="c">Calculer</button>
+        </div>
+    </form>
+    <div id="res"></div>
+    <script type="text/javascript">
+        document.querySelector("#c").addEventListener('click',function(){
+            let kwh=parseFloat(document.querySelector('#kwh').value);
+            let isNormal=document.querySelector('#normal').checked;
+            let res=0;
+            if(isNormal){
+                res=kwh*1.2;
+            }else{
+                res=kwh*0.8;
+            }
+            document.querySelector('#res').innerHTML=`Montant de la facture : ${res} DH`;
+        });
+    </script>
+</body>
+</html>

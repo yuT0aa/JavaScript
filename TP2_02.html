@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style  type="text/css">
+        body{
+            margin: 0px;
+            padding: 0px;
+            display: flex;
+            justify-content: center;    
+            align-items: center;
+            height: 100vh;
+            background-color: #5f748a;
+        }
+        form{
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .d-flex{
+            display: flex;
+        }
+        .flex-column{
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    
+    <form action="">
+        <h1>Configue PC</h1>
+        <div style="margin: 12px 5px;">
+            <label for="n1">Carte mère</label>
+            <select id="n1">
+                <option value="">--Choisir une carte mère--</option>
+                <option value="ASUS">ASUS</option>
+                <option value="VIA">VIA</option>
+                <option value="SIS">SIS</option>
+            </select>
+        </div>
+        <div style="margin: 12px 5px;">
+            <div class="d-flex flex-column" >Ecran
+                <div>
+                    <label for="n2">Taille</label>
+                    <input type="radio" id="n2" name="n2" value="15" checked>
+                    <label for="n2">Plat</label>
+                    <input type="radio" id="n2" name="n2" value="17" >
+                    <label for="n2">Cathodique</label>
+                </div>
+                <div>
+                    <label for="type">Type</label>
+                    <input type="radio" id="n2" name="type" value="15" checked>
+                    <label for="type">15"</label>
+                    <input type="radio" id="n2" name="type" value="17" >
+                    <label for="type">17"</label>
+                </div>
+            </div>
+        </div>
+        <div style="margin: 12px 5px;">Options <br>
+            <input type="checkbox" id="option1" >
+            <label for="option1">Carte Satellite</label><br>
+            <input type="checkbox" id="option2" >
+            <label for="option2">Imprimante</label><br>
+            <input type="checkbox" id="option3" >
+            <label for="option3">Scanner</label><br>
+
+        </div>
+        <div style="margin: 12px 5px;">
+            <label for="n4">Catégorie</label>
+            <select id="n4">
+                <option value="">--Choisir une catégorie--</option>
+                <option value="Etudiant">Etudiant</option>
+                <option value="Autres">Autres</option>
+            </select>
+        </div>
+        <div style="margin: 12px 5px;">Taux de reduction correspondant
+            <input type="text" id="n5" readonly>
+        </div>
+        <div style="margin: 12px 5px;">
+            <button type="button" id="c">Calculer prix</button>
+        </div>
+    </form>
+    <p id="res"></p>
+    <script type="text/javascript">
+        document.querySelector("#c").addEventListener('click',function(){
+            let n1=document.querySelector('#n1').value;
+            let n2=document.querySelector('input[name=n2]:checked').value;
+            let type=document.querySelector('input[name=type]:checked').value;
+            let option1=document.querySelector('#option1').checked;
+            let option2=document.querySelector('#option2').checked;
+            let option3=document.querySelector('#option3').checked;
+            let n4=document.querySelector('#n4').value;
+            let reduction=0;
+            if(n4=='Etudiant'){
+                reduction=20;
+            }else if(n4=='Autres'){
+                reduction=10;
+            }
+            document.querySelector('#n5').value=`${reduction}%`;
+            let p=document.querySelector('#res');
+            let prix=0;
+            if(n1=='ASUS'){
+                prix=700;
+            }else if(n1=='VIA'){    
+                prix=600;
+            }else if(n1=='SIS'){
+                prix=500;
+            }
+            if(n2=='15' && type=='plat'){
+                prix=1500;
+            }else if(n2=='15' && type=='cathodique'){
+                prix=1000;
+            }else if(n2=='17' && type=='plat'){
+                prix=2000;
+            }else if(n2=='17' && type=='cathodique'){
+                prix=1500;
+            }
+            if(option1){
+                prix+=900;
+            }
+            if(option2){
+                prix+=600;
+            }
+            if(option3){
+                prix+=600;
+            }
+            p.textContent=`Prix : ${prix}DH`;
+        });
+    </script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>

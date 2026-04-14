@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+     const livres=[{id:100,titre:'livre1',auteur:'auteur1',prix:125},
+        {id:101,titre:'livre2',auteur:'auteur2',prix:128},
+        {id:102,titre:'livre3',auteur:'auteur3',prix:195},
+        {id:103,titre:'livre4',auteur:'auteur1',prix:125},
+        {id:104,titre:'livre5',auteur:'auteur2',prix:128},
+        {id:105,titre:'livre6',auteur:'auteur3',prix:195}
+     ]
+     //Question1
+    /* let titres=[];
+     for(let l of livres){
+        titres.push(l.titre);
+     }*/ 
+   /* const getTitle=(l)=>l.titre;
+    function getTitle(l){
+         return l['titre'];
+    }
+    let titres=livres.map(getTitle);
+    let titres=livres.map((l)=>l.titre);*/
+//question2 
+/*function fct(l){
+    return l.auteur.toLowerCase()==='auteur1';
+}
+let outQ2=livres.filter(fct);*/
+
+//question3 
+/*function fct(l){
+    return l.id==102;
+}
+let outQ3=livres.find(fct);*/
+
+//question4 
+
+let totalPrix=livres.reduce((total,l)=>total+=l.prix,0);
+   console.log(totalPrix);
+   
+
+  //question5
+L1=[...livres];  
+console.log(`L1:${L1}`);
+
+   </script>
+</body>
+</html>

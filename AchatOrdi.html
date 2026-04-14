@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container w-75 mx-auto my-4 p-3 bg-light rounded">
+          <form action="">
+            <!--carte mére-->
+            <div class="mb-3">
+               <label for="">Carte mére</label>
+               <select name="" class="form-select" id="carte">
+                 <option value="" selected disabled>choisir une carte</option>
+                <option value="700">Assus</option>
+                <option value="600">VIA</option>
+                <option value="500">Sis</option>
+             
+                </select>
+
+            </div>
+            <!--Ecran-->
+            <div class="mb-3">
+                <label for="">Ecran</label>
+                <div class="ms-5">
+                    Type : 
+                <div class="form-check form-check-inline">
+  <input class="form-check-input" checked type="radio" name="type" id="plat" value="plat">
+  <label class="form-check-label" for="plat">plat</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input"  type="radio" name="type" id="cathodique" value="cathodique">
+  <label class="form-check-label" for="cathodique">cathodique</label>
+</div>
+            </div>
+            <div class="ms-5">
+                    Taille : 
+                <div class="form-check form-check-inline">
+  <input class="form-check-input" checked type="radio" name="taille" id="15p" value="15p">
+  <label class="form-check-label" for="plat">15"</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="taille" id="17p" value="17p">
+  <label class="form-check-label" for="cathodique">17"</label>
+</div>
+            </div>
+</div>
+<!--options-->
+<div class="mb-3">
+ <label for=""> Options</label>
+ <div class="ms-5">
+    <div class="form-check">
+  <input class="form-check-input" type="checkbox" value="900" id="cs">
+  <label class="form-check-label" for="cs">
+     carte satellite
+  </label>
+</div>
+   <div class="form-check">
+  <input class="form-check-input" type="checkbox" value="600" id="pr">
+  <label class="form-check-label" for="pr">
+     Imprimante
+  </label>
+</div>
+  <div class="form-check">
+  <input class="form-check-input" type="checkbox" value="600" id="sc">
+  <label class="form-check-label" for="sc">
+     scanner
+  </label>
+</div>
+
+</div>
+
+
+</div>
+<div class="mb-3">
+    <label for="">Catégories</label>
+    <select name="" id="cat" class="form-select">
+        <option value="0" disabled seleceted>choisir categorie...</option>
+    <option value="0.1">Autres</option>
+     <option value="0.2">Etudiant</option>
+</select>
+</div>
+<div class="mb-4">
+    Taux de réduction correspondant : <input type="text" readonly id="tauxReduction">
+</div>
+
+<div class="mb-3 align-items-center d-flex justify-content-center gap-3">
+    <button type="button" class="btn btn-primary" onclick="calculer()"> calculer</button>
+    <p>Ce pc vous coutera : <input type="text" id="res" readonly></p>
+</div>
+          </form>
+
+
+
+
+    </div>
+
+<script type="text/javascript">
+    const calculer=()=>{
+      let total=0;
+      let carteSelect=document.querySelector('#carte');
+      let types=document.querySelectorAll('input[name=type]');
+      let tailles=document.querySelectorAll('input[name=taille]');
+      let options=document.querySelectorAll('input[type=checkbox]:checked');
+      let categorie=document.querySelector('#cat');
+      let tauxR=document.querySelector('#tauxReduction');
+      let resInput=document.querySelector('#res');
+    if(carteSelect.value.trim()==""){
+        alert('vous devez choisir une carte');
+        return;
+    }
+    total+=Number(carteSelect.value);
+    //add prix ecran
+    if(types[0].checked && tailles[0].checked){
+        total+=1500;
+    }else if(types[0].checked && tailles[1].checked){
+        total+=2000;
+    }else if(types[1].checked && tailles[0].checked){
+        total+=1000;
+    }
+    else{
+
+         total+=1500;
+    }
+    //add add prix options
+    options.forEach(function(o,pos){
+        total+=Number(o.value);
+    });
+    //get categorie
+    if(categorie.value==""){
+        alert('vous devez choisir une categorie');
+        return;
+    }
+    let totalReduction=total*Number(categorie.value);
+    tauxReduction.value=totalReduction;
+    total=total-totalReduction;
+    resInput.value=total;
+
+
+
+    }
+</script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

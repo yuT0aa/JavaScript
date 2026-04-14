@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+
+        body{
+        font-size:1.8rem;}
+        label{
+
+            display:inline-block;
+            width:200px;
+            font-size:1.8rem;
+        }
+        input[type=number],button{
+            width:550px;
+               font-size:1.8rem;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <div style="margin:12px 5px;">
+            <label for="pu">Prix unitaire</label>
+            <input type="number" step="0.01" min="10" max="200" id="pu">
+        </div>
+    <div style="margin:12px 5px;">
+            <label for="qte">Quantité</label>
+            <input type="number" step="1" min="1" max="10" id="qte">
+    </div>
+    <div style="margin:12px 5px;">
+        <input type="radio" id="etudiant" name="categorie"/>&nbsp;etudiant
+        <input type="radio" id="autres" checked name="categorie">&nbsp;Autres
+    </div>
+    <div style="margin:12px 5px;">
+
+        <button type="button" id="c">Calcuer</button>
+    </div>
+    <div id="res"></div>
+    </form>
+
+
+    <script type="text/javascript">
+        document.querySelector("#c").addEventListener('click',function(){
+        let prixU=parseFloat(document.querySelector('#pu').value);
+        let qu=parseInt(document.querySelector('#qte').value);
+       let isStudent=document.querySelector('#etudiant').checked;
+       //alert(isStudent);
+       let prixT=0;
+        if(!isStudent){//isStudent==false
+            prixT=prixU*qu;
+        }else{
+            prixT=prixU*qu*0.8;
+        }
+       
+       document.querySelector('#res').textContent=`le prix à payer est : ${prixT} DH`;
+    });
+    </script>
+</body>
+</html>

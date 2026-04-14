@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+       .myClass{
+        text-decoration: underline;
+        text-transform: uppercase;
+        list-style-type: none;
+       }
+
+    </style>
+</head>
+<body>
+    <ul id="a">
+  
+
+    </ul>
+
+
+
+    <script type="text/javascript">
+
+        /*for(let i=0;i<10;i++){
+            console.log("Hello world!!!!");
+        }*/ 
+       let container=document.querySelector('#a');
+       let fruits=["orange",'banane','pomme','avocat'];
+       for(let i=0;i<fruits.length;i++){
+           let newItem=document.createElement('li');
+           newItem.textContent=fruits[i];
+           newItem.style.color='blue';
+           newItem.style.fontSize="1.5rem";
+
+           newItem.classList.add("myClass");
+
+           container.appendChild(newItem);
+
+       }
+
+    </script>
+</body>
+</html>

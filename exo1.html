@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Addition</h3>
+
+<input type="number" id="nb1" placeholder="Nombre 1">
+<input type="number" id="nb2" placeholder="Nombre 2">
+
+<button onclick="addition()">Calculer</button>
+
+<p id="resultat1"></p>
+
+<script>
+function addition() {
+  let n1 = Number(document.getElementById("nb1").value);
+  let n2 = Number(document.getElementById("nb2").value);
+
+  let somme = n1 + n2;
+
+  document.getElementById("resultat1").textContent =
+    "Résultat : " + somme;
+}
+</script>
+
+</body>
+</html>

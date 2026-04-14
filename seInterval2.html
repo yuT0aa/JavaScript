@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <span id="timer"></span>
+
+
+    <script type="text/javascript">
+      let counter={h:0,m:0,s:0};
+       function SetTimer(){
+         document.querySelector('#timer').innerHTML=`${counter.h} : ${counter.m} : ${counter.s}`;
+       }
+       //onload
+       SetTimer();
+
+       function Increment(){
+             counter.s+=1;
+             if(counter.s==60){
+                counter.m+=1;
+                counter.s=0;
+                if(counter.m==60){
+                        counter.h+=1;
+                        counter.m=0;
+                }
+             }
+             SetTimer();
+
+       }
+
+       setInterval(function(){Increment();},1000);
+  let ch="bonjour";
+  ch.charAt(1)
+    </script>
+</body>
+</html>
