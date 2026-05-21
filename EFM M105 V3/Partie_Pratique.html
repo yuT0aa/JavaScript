@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vente de Tickets</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js" integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+<body>
+    <form action="" class="container">
+        <h2>Formulaire Vente de Tickets</h2>
+            <fieldset class="card">
+                <legend>Informations du support</legend>
+
+                <label for="origine"> Pays d'origine:</label><br>
+                <select class="form-select" name="origine" id="pay">
+                    <option value="maroc">Maroc</option>
+                    <option value="benin">Benin</option>
+                    <option value="senegal">Senegale</option>
+                </select><br>
+
+                <label for="CIN">CIN/Passport</label><br>
+                <input class="form-control" type="text" id="CIN"><br>
+                
+                <label for="nom">Nom:</label><br>
+                <input class="form-control" type="text" id="nom"><br>
+
+                <label for="prenom">Prenom</label><br>
+                <input class="form-control" type="text" id="prenom">
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Match et Categorie</legend>
+
+                <label for="match">Selection de Match</label><br>
+                <select class="form-select" name="" id="">
+
+                </select><br>
+
+                <label for="categorie">Categorie de Tickets</label><br>
+                    <label for="categorie">
+                        <input type="radio" name="categorie">Categorie 1
+                    </label><br>
+                    <label for="categorie">
+                        <input type="radio" name="categorie">Categorie 2
+                    </label><br>
+                
+
+                <button type="button">Vendre Ticket</button>
+            </fieldset>
+
+            <table>
+                <h3>Liste des Tickets</h3>
+
+            </table>
+
+    </form>
+</body>
+</html>
