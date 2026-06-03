@@ -1,104 +1,102 @@
-const validateform = () => {
-    const teamName = document.getElementById('teamName').value.trim();
-    const teamLogo = document.getElementById('teamLogo').value.trim();
-    const teamDate = document.getElementById('teamDate').value;
-    const teamPlayers = document.getElementById('teamPlayers').value.trim();
-
-    if (!teamName) {
-        alert("Le nom de l'équipe est requis.");
-        return false;
-    }
-    if (!teamLogo) {
-        alert("L'URL du logo est requise.");
-        return false;
-    }
-    if (!teamDate) {
-        alert("La date de création est requise.");
-        return false;
-    }
-    if (!teamPlayers) {
-        alert("La liste des joueurs est requise.");
-        return false;
-    }
-    return true;
-}
-
-document.querySelector('.btn-add').addEventListener('click', () => {
-    const modal = new bootstrap.Modal(document.getElementById('modal'));
-    modal.show();
-});
-
-document.querySelector('.modal-actions button[type="button"]').addEventListener('click', () => {
-    const modal = bootstrap.Modal.getInstance(document.getElementById('modal'));
-    modal.hide();
-});
-
-document.querySelector('.modal-actions button[type="button"]:last-child').addEventListener('click', () => {
-    if (validateform()) {
-        // Code pour sauvegarder l'équipe
-        alert("Équipe sauvegardée !");
-        const modal = bootstrap.Modal.getInstance(document.getElementById('modal'));
-        modal.hide();
-    }
-});
-
-const loadTeams = () => {
-    fetch('teams.json')
-        .then(response => response.json())
-        .then(data => {
-            const app = document.getElementById('app');
-            data.forEach(team => {
-                const teamCard = document.createElement('div');
-                teamCard.className = 'team-card';
-                teamCard.innerHTML = `
-                    <img src="${team.logo}" alt="${team.name} Logo" class="team-logo">
-                    <h3>${team.name}</h3>
-                    <p>Créé le: ${new Date(team.creationDate).toLocaleDateString()}</p>
-                    <ul>${team.players.map(player => `<li>${player}</li>`).join('')}</ul>
-                `;
-                app.appendChild(teamCard);
-            });
-        })
-        .catch(error => console.error('Error loading teams:', error));
-};
-
-const saveTeam = () => {
-    if (validateform()) {
-        const teamName = document.getElementById('teamName').value.trim();
-        const teamLogo = document.getElementById('teamLogo').value.trim();
-        const teamDate = document.getElementById('teamDate').value;
-        const teamPlayers = document.getElementById('teamPlayers').value.trim().split('\n');
-
-        const newTeam = {
-            name: teamName,
-            logo: teamLogo,
-            creationDate: teamDate,
-            players: teamPlayers
-        };
-
-        // Code pour sauvegarder l'équipe (ex: envoyer au serveur ou stocker localement)
-        console.log("Nouvelle équipe à sauvegarder:", newTeam);
-        alert("Équipe sauvegardée !");
-    }
-};
-
-$(document).ready(function () {
-   if(localStorage.getItem("teams")){
-    afficherEquipes(JSON.parse(localStorage.getItem("teams")));
+  $(document).ready(function () {
+   if(localStorage.getItem("equipes")){
+    afficherEquipes(JSON.parse(localStorage.getItem("equipes")));
    }else{
     $.ajax({
         url: "equipes.json",
         type: "GET",
         dataType: "json",
         success: function (equipes) {
-            localStorage.setItem("teams",JSON.stringify(equipes));
-            afficherEquipes(equipes);   
-        },
-        error: function (error) {
-            console.error("Erreur lors du chargement des équipes:", error);
+            localStorage.setItem("equipes",JSON.stringify(equipes));
+            afficherEquipes(equipes);
         }
+
     });
    }
 });
 
-window.onload = loadTeams;
+function afficherEquipes(equipes) {
+
+    let html = "";
+    equipes.forEach((equipe,pos) => {
+        console.log(equipe.joueurs);
+       /* let joueurs = equipe.joueurs
+            .map(j => j.nom)
+            .join(", ");*/ 
+
+        let joueurs='';
+        equipe.joueurs.forEach((j,pos)=>{
+         let sep=(pos<equipe.joueurs.length-1)?", ":"";
+          joueurs+=j.nom+sep;
+        });
+         //transformer joueur en tr
+        html += `
+            <tr>
+                <td>${equipe.id}</td>
+                <td>${equipe.nom}</td>
+                <td>
+                    <img src="${equipe.logo}"
+                        width="60">
+                </td>
+                <td>${equipe.date}</td>
+                <td>${joueurs}</td>
+                <td>
+                    <a href="show.html?id=${equipe.id}"
+                    class="btn btn-info btn-sm">
+                        Show
+                    </a>
+                    <a href="edit.html?id=${equipe.id}"
+                    class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+                    <button class="btn btn-danger btn-sm"
+                            onclick="supprimer(${pos})">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        `;
+    });
+    $("#teamTableBody").html(html);
+}
+
+function supprimer(pos) {
+    if(confirm("Supprimer cette équipe ?")) {
+    let equipes= JSON.parse(localStorage.getItem("equipes"));
+    equipes.splice(pos,1);
+    localStorage.setItem("equipes",JSON.stringify(equipes));
+    afficherEquipes(equipes);
+    }
+}
+
+function openModal() {
+    $("#modal").show();
+}
+
+function closeModal() {
+    $("#modal").hide();
+}
+
+function saveTeam() {
+    let nom = $("#teamName").val();
+    let logo = $("#teamLogo").val();
+    let date = $("#teamDate").val();
+    let joueurs = $("#teamPlayers").val().split("\n").map(j => ({nom: j.trim()})).filter(j => j.nom);
+    
+    if(nom && logo && date) {
+        let equipes = JSON.parse(localStorage.getItem("equipes")) || [];
+        let newTeam = {
+            id: Date.now(),
+            nom,
+            logo,
+            date,
+            joueurs
+        };
+        equipes.push(newTeam);
+        localStorage.setItem("equipes", JSON.stringify(equipes));
+        afficherEquipes(equipes);
+        closeModal();
+    } else {
+        alert("Veuillez remplir tous les champs.");
+    }
+}
