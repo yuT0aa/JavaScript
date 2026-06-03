@@ -62,4 +62,24 @@ const loadTeams = () => {
         .catch(error => console.error('Error loading teams:', error));
 };
 
+const saveTeam = () => {
+    if (validateform()) {
+        const teamName = document.getElementById('teamName').value.trim();
+        const teamLogo = document.getElementById('teamLogo').value.trim();
+        const teamDate = document.getElementById('teamDate').value;
+        const teamPlayers = document.getElementById('teamPlayers').value.trim().split('\n');
+
+        const newTeam = {
+            name: teamName,
+            logo: teamLogo,
+            creationDate: teamDate,
+            players: teamPlayers
+        };
+
+        // Code pour sauvegarder l'équipe (ex: envoyer au serveur ou stocker localement)
+        console.log("Nouvelle équipe à sauvegarder:", newTeam);
+        alert("Équipe sauvegardée !");
+    }
+};
+
 window.onload = loadTeams;
