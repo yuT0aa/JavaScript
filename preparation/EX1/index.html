@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Équipes</title>
+</head>
+<body>
+
+    <h1>Gestion des Équipes</h1>
+    <button class="btn-add">Ajouter une Équipe</button>
+    <div id="app" class="container"></div>
+
+    <div id="modal">
+        <div class="modal-content">
+            <h3 id="modalTitle">Ajouter une Équipe</h3>
+            <input type="text" id="teamName" placeholder="Nom de l'Équipe">
+            <input type="text" id="teamLogo" placeholder="URL du Logo">
+            <input type="date" id="teamDate">
+            <textarea id="teamPlayers" rows="5" placeholder="Joueurs"></textarea>
+            <div class="modal-actions">
+                <button type="button">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
