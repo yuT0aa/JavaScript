@@ -82,4 +82,23 @@ const saveTeam = () => {
     }
 };
 
+$(document).ready(function () {
+   if(localStorage.getItem("teams")){
+    afficherEquipes(JSON.parse(localStorage.getItem("teams")));
+   }else{
+    $.ajax({
+        url: "equipes.json",
+        type: "GET",
+        dataType: "json",
+        success: function (equipes) {
+            localStorage.setItem("teams",JSON.stringify(equipes));
+            afficherEquipes(equipes);   
+        },
+        error: function (error) {
+            console.error("Erreur lors du chargement des équipes:", error);
+        }
+    });
+   }
+});
+
 window.onload = loadTeams;
