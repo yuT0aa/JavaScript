@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style src="style.css"></style>
+</head>
+<body>
+    <h2>Crud</h2>
+    <div>
+        <input type="text" id="title" placeholder="Title">
+        <div class="prices">
+            <input onkeyup="getTotal()" type="number" placeholder="price">
+            <input onkeyup="getTotal()" type="number" placeholder="taxes">
+            <input onkeyup="getTotal()" type="number" placeholder="ads">
+            <input onkeyup="getTotal()" type="number" placeholder="discount">
+            <small id="total">12345</small>
+        </div>
+        <input type="number" id="count" placeholder="count">
+        <input type="text" id="categorie" placeholder="categorie">
+        <button id="submit">Create</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Taxes</th>
+                <th>Ads</th>
+                <th>Discount</th>
+                <th>Total</th>
+                <th>Category</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+        </tbody>
+    </table>
+
+    <script src="script.js"></script>
+</body>
+</html>
